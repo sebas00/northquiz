@@ -9,20 +9,46 @@
     <meta name="description" content="A cool thing made with Glitch">
 
     <title>Einstein Bot Quiz</title>
-
-    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="salesforce-lightning-design-system.min.css">
-
+<link rel="stylesheet" href="style.css">
     <!-- import the webpage's client-side javascript file -->
-    
+    <script>
+      window.onload = function() {
+    var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+        labels: ['Yes', 'No'],
+        datasets: [{
+            label: 'Answers',
+            backgroundColor: ['rgb(255, 99, 132)', '#FF0099'],
+            borderColor: 'rgb(255, 99, 132)',
+            data: [3, 10],
+            
+        }]
+    },
+
+    // Configuration options go here
+    options: {"scales":{"yAxes":[{"ticks":{"beginAtZero":true}}]}}
+});
+        chart.canvas.parentNode.style.width = '70%px';
+      }
+    </script>
   </head>
   <body>
+    <article class="slds-card">
     <header>
-      <h1>Einstein Bot Quiz/h1>
+      <h1>Einstein Bot Quiz</h1>
     </header>
-
-    
+<div class="chart-container" style="position: relative; height:70%; width:70%">
+    <canvas id="myChart"></canvas>
+      </div>
     <style type="text/css">
 	.embeddedServiceHelpButton .helpButton .uiButton {
 		background-color: #005290;
@@ -105,5 +131,7 @@ socket.addEventListener('message', function (event) {
     console.log('Message from server ', event.data);
 });
 </script>
+      
+    </article>
   </body>
 </html>

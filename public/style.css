@@ -1,5 +1,9 @@
 /* this file is loaded by index.html and styles the page */
 
+canvas {
+  width:70%;
+}
+/*
 * {
   box-sizing: border-box;
 }
@@ -54,3 +58,4 @@ footer {
   padding-top: 1.5em;
   border-top: 1px solid lightgrey;
 }
+*/
