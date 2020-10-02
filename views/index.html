@@ -1,0 +1,109 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A cool thing made with Glitch">
+
+    <title>Einstein Bot Quiz</title>
+
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="salesforce-lightning-design-system.min.css">
+
+    <!-- import the webpage's client-side javascript file -->
+    
+  </head>
+  <body>
+    <header>
+      <h1>Einstein Bot Quiz/h1>
+    </header>
+
+    
+    <style type="text/css">
+	.embeddedServiceHelpButton .helpButton .uiButton {
+		background-color: #005290;
+		font-family: "Arial", sans-serif;
+	}
+	.embeddedServiceHelpButton .helpButton .uiButton:focus {
+		outline: 1px solid #005290;
+	}
+</style>
+
+<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+<script type='text/javascript'>
+  var cbut;
+	var initESW = function(gslbBaseURL) {
+		embedded_svc.settings.displayHelpButton = true; //Or false
+		embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
+
+		//embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
+		//embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
+
+		//embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
+		//embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
+
+		// Settings for Chat
+		//embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+			// Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
+			// Returns a valid button ID.
+		//};
+		//embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
+		//embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
+		//embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
+
+		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+		embedded_svc.settings.entryFeature = 'LiveAgent';
+
+		embedded_svc.init(
+			'https://north-services-event.my.salesforce.com',
+			'https://sdodemo-main-166ce2cf6b6-172-174b9e8c87c.force.com/consumer',
+			gslbBaseURL,
+			'00D09000001Ihpp',
+			'quiz',
+			{
+				baseLiveAgentContentURL: 'https://c.la3-c2-fra.salesforceliveagent.com/content',
+				deploymentId: '57209000000Xbin',
+				buttonId: '57309000000XeCS',
+				baseLiveAgentURL: 'https://d.la3-c2-fra.salesforceliveagent.com/chat',
+				eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I09000000TRYqEAO_174e4f22acd',
+				isOfflineSupportEnabled: false
+			}
+		);
+	};
+
+	if (!window.embedded_svc) {
+		var s = document.createElement('script');
+		s.setAttribute('src', 'https://north-services-event.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+		s.onload = function() {
+      console.log('what')
+			initESW(null);
+      
+		};
+		document.body.appendChild(s);
+	} else {
+		initESW('https://service.force.com');
+    setTimeout(() => {  var ttt = document.getElementsByClassName("uiButton helpButtonEnabled");
+      console.log(ttt);
+      ttt[0].click(); }, 2000);
+    
+	}
+  
+  // Create WebSocket connection.
+const socket = new WebSocket('wss://sdm-northquiz.glitch.me/');
+
+// Connection opened
+socket.addEventListener('open', function (event) {
+    socket.send('Hello Server!');
+});
+
+// Listen for messages
+socket.addEventListener('message', function (event) {
+    console.log('Message from server ', event.data);
+});
+</script>
+  </body>
+</html>
