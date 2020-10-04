@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
     <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="salesforce-lightning-design-system.min.css" />
+    <link rel="stylesheet" href="assets/styles/salesforce-lightning-design-system.min.css" />
     <link rel="stylesheet" href="style.css" />
     <!-- import the webpage's client-side javascript file -->
     <script>
@@ -473,14 +473,14 @@
         } else {
           //initESW('https://service.force.com');
           setTimeout(() => {
-            //var ttt = document.getElementsByClassName("uiButton helpButtonEnabled");
+            var ttt = document.getElementsByClassName("uiButton helpButtonEnabled");
             console.log(ttt);
-            ttt[0].click();
+            ///ttt[0].click();
           }, 2000);
         }
 
         // Create WebSocket connection.
-        const socket = new WebSocket("wss://sdm-northquiz.glitch.me/");
+        const socket = new WebSocket("ws://" + location.host);
 
         // Connection opened
         socket.addEventListener("open", function(event) {
