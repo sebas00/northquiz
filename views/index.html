@@ -471,16 +471,16 @@
           };
           document.body.appendChild(s);
         } else {
-          //initESW('https://service.force.com');
+          initESW('https://service.force.com');
           setTimeout(() => {
             var ttt = document.getElementsByClassName("uiButton helpButtonEnabled");
             console.log(ttt);
-            ///ttt[0].click();
+            ttt[0].click();
           }, 2000);
         }
 
         // Create WebSocket connection.
-        const socket = new WebSocket("ws://" + location.host);
+        const socket = new WebSocket("wss://botquiz.lightning-seb.com");
 
         // Connection opened
         socket.addEventListener("open", function(event) {
