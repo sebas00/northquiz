@@ -3,134 +3,497 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A cool thing made with Glitch">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A cool thing made with Glitch" />
 
     <title>Einstein Bot Quiz</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
     <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="salesforce-lightning-design-system.min.css">
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="salesforce-lightning-design-system.min.css" />
+    <link rel="stylesheet" href="style.css" />
     <!-- import the webpage's client-side javascript file -->
     <script>
       window.onload = function() {
-    var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'bar',
+        var ctx = document.getElementById("myChart").getContext("2d");
 
-    // The data for our dataset
-    data: {
-        labels: ['Yes', 'No'],
-        datasets: [{
-            label: 'Answers',
-            backgroundColor: ['rgb(255, 99, 132)', '#FF0099'],
-            borderColor: 'rgb(255, 99, 132)',
-            data: [3, 10],
-            
-        }]
-    },
+        var chart = new Chart(ctx, {
+          // The type of chart we want to create
+          type: "bar",
 
-    // Configuration options go here
-    options: {"scales":{"yAxes":[{"ticks":{"beginAtZero":true}}]}}
-});
-        chart.canvas.parentNode.style.width = '70%px';
-      }
+          // The data for our dataset
+          data: {
+            labels: ["Yes", "No"],
+            datasets: [
+              {
+                label: "Answers",
+                backgroundColor: ["rgb(255, 99, 132)", "#FF0099"],
+                borderColor: "rgb(255, 99, 132)",
+                data: [3, 10]
+              }
+            ]
+          },
+
+          // Configuration options go here
+          options: { scales: { yAxes: [{ ticks: { beginAtZero: true } }] } }
+        });
+        chart.canvas.parentNode.style.width = "70%px";
+      };
     </script>
   </head>
   <body>
-    <article class="slds-card">
-    <header>
-      <h1>Einstein Bot Quiz</h1>
-    </header>
-<div class="chart-container" style="position: relative; height:70%; width:70%">
-    <canvas id="myChart"></canvas>
-      </div>
-    <style type="text/css">
-	.embeddedServiceHelpButton .helpButton .uiButton {
-		background-color: #005290;
-		font-family: "Arial", sans-serif;
-	}
-	.embeddedServiceHelpButton .helpButton .uiButton:focus {
-		outline: 1px solid #005290;
-	}
-</style>
-
-<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
-<script type='text/javascript'>
-  var cbut;
-	var initESW = function(gslbBaseURL) {
-		embedded_svc.settings.displayHelpButton = true; //Or false
-		embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
-
-		//embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
-		//embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
-
-		//embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
-		//embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
-
-		// Settings for Chat
-		//embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
-			// Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
-			// Returns a valid button ID.
-		//};
-		//embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
-		//embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
-		//embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
-
-		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
-		embedded_svc.settings.entryFeature = 'LiveAgent';
-
-		embedded_svc.init(
-			'https://north-services-event.my.salesforce.com',
-			'https://sdodemo-main-166ce2cf6b6-172-174b9e8c87c.force.com/consumer',
-			gslbBaseURL,
-			'00D09000001Ihpp',
-			'quiz',
-			{
-				baseLiveAgentContentURL: 'https://c.la3-c2-fra.salesforceliveagent.com/content',
-				deploymentId: '57209000000Xbin',
-				buttonId: '57309000000XeCS',
-				baseLiveAgentURL: 'https://d.la3-c2-fra.salesforceliveagent.com/chat',
-				eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I09000000TRYqEAO_174e4f22acd',
-				isOfflineSupportEnabled: false
-			}
-		);
-	};
-
-	if (!window.embedded_svc) {
-		var s = document.createElement('script');
-		s.setAttribute('src', 'https://north-services-event.my.salesforce.com/embeddedservice/5.0/esw.min.js');
-		s.onload = function() {
-      console.log('what')
-			initESW(null);
+    <article class="slds-card" style="width:70%;height:100%">
       
-		};
-		document.body.appendChild(s);
-	} else {
-		initESW('https://service.force.com');
-    setTimeout(() => {  var ttt = document.getElementsByClassName("uiButton helpButtonEnabled");
-      console.log(ttt);
-      ttt[0].click(); }, 2000);
-    
-	}
-  
-  // Create WebSocket connection.
-const socket = new WebSocket('wss://sdm-northquiz.glitch.me/');
+      <div class="slds-card__body slds-card__body_inner">
+        
+      
+      <div
+        class="chart-container slds-is-collapsed"
+        style="position: relative; width:70%"
+      >
+        <canvas id="myChart" class="slds-is-collapsed"></canvas>
+      </div>
+      
+      
+      <div class="slds-modal__content" id="overview">
+        <div class="slds-welcome-mat">
+          <div class="slds-welcome-mat__content slds-grid">
+            <div class="slds-welcome-mat__info slds-size_1-of-2">
+              <div class="slds-welcome-mat__info-content">
+                <h2
+                  class="slds-welcome-mat__info-title"
+                  id="welcome-mat-13-label"
+                >
+                  The Einstein Winter '21 Bot Quiz is here!
+                </h2>
+                <div
+                  class="slds-welcome-mat__info-description slds-text-longform"
+                >
+                  <p>
+                    Welcome to Lightning Experience, the modern, beautiful user
+                    experience from Salesforce. With a sales-and service-centric
+                    mindset, we focused on reinventing the desktop environment
+                    to better support your business processes.
+                  </p>
+                </div>
+                <div class="slds-welcome-mat__info-progress">
+                  <p>
+                    <strong>0/5 units completed</strong>
+                  </p>
+                </div>
+                <div
+                  class="slds-progress-bar slds-progress-bar_circular"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-valuenow="0"
+                  role="progressbar"
+                >
+                  <span class="slds-progress-bar__value" style="width:0%">
+                    <span class="slds-assistive-text">Progress: 0%</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <ul class="slds-welcome-mat__tiles slds-size_1-of-2">
+              <li class="slds-welcome-mat__tile">
+                <a
+                  href="javascript:void(0);"
+                  class="slds-box slds-box_link slds-media"
+                >
+                  <div
+                    class="slds-media__figure slds-media__figure_fixed-width slds-align_absolute-center"
+                  >
+                    <div class="slds-welcome-mat__tile-figure">
+                      <div class="slds-welcome-mat__tile-icon-container">
+                        <span
+                          class="slds-icon_container slds-icon-utility-animal_and_nature"
+                        >
+                          <svg
+                            class="slds-icon slds-icon-text-default"
+                            aria-hidden="true"
+                          >
+                            <use
+                              xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#animal_and_nature"
+                            ></use>
+                          </svg>
+                        </span>
+                        <span
+                          class="slds-icon_container slds-icon_container_circle slds-icon-action-check"
+                          title="Completed"
+                        >
+                          <svg
+                            class="slds-icon slds-welcome-mat__icon-check"
+                            aria-hidden="true"
+                          >
+                            <use
+                              xlink:href="/assets/icons/action-sprite/svg/symbols.svg#check"
+                            ></use>
+                          </svg>
+                          <span class="slds-assistive-text">Completed</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slds-media__body">
+                    <div class="slds-welcome-mat__tile-body">
+                      <h3 class="slds-welcome-mat__tile-title">
+                        Welcome to Salesforce!
+                      </h3>
+                      <p class="slds-welcome-mat__tile-description">
+                        Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="slds-welcome-mat__tile">
+                <a
+                  href="javascript:void(0);"
+                  class="slds-box slds-box_link slds-media"
+                >
+                  <div
+                    class="slds-media__figure slds-media__figure_fixed-width slds-align_absolute-center"
+                  >
+                    <div class="slds-welcome-mat__tile-figure">
+                      <div class="slds-welcome-mat__tile-icon-container">
+                        <span
+                          class="slds-icon_container slds-icon-utility-call"
+                        >
+                          <svg
+                            class="slds-icon slds-icon-text-default"
+                            aria-hidden="true"
+                          >
+                            <use
+                              xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#call"
+                            ></use>
+                          </svg>
+                        </span>
+                        <span
+                          class="slds-icon_container slds-icon_container_circle slds-icon-action-check"
+                          title="Completed"
+                        >
+                          <svg
+                            class="slds-icon slds-welcome-mat__icon-check"
+                            aria-hidden="true"
+                          >
+                            <use
+                              xlink:href="/assets/icons/action-sprite/svg/symbols.svg#check"
+                            ></use>
+                          </svg>
+                          <span class="slds-assistive-text">Completed</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slds-media__body">
+                    <div class="slds-welcome-mat__tile-body">
+                      <h3 class="slds-welcome-mat__tile-title">
+                        Learn About OpenCTI
+                      </h3>
+                      <p class="slds-welcome-mat__tile-description">
+                        Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="slds-welcome-mat__tile">
+                <a
+                  href="javascript:void(0);"
+                  class="slds-box slds-box_link slds-media"
+                >
+                  <div
+                    class="slds-media__figure slds-media__figure_fixed-width slds-align_absolute-center"
+                  >
+                    <div class="slds-welcome-mat__tile-figure">
+                      <div class="slds-welcome-mat__tile-icon-container">
+                        <span
+                          class="slds-icon_container slds-icon-utility-upload"
+                        >
+                          <svg
+                            class="slds-icon slds-icon-text-default"
+                            aria-hidden="true"
+                          >
+                            <use
+                              xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#upload"
+                            ></use>
+                          </svg>
+                        </span>
+                        <span
+                          class="slds-icon_container slds-icon_container_circle slds-icon-action-check"
+                          title="Completed"
+                        >
+                          <svg
+                            class="slds-icon slds-welcome-mat__icon-check"
+                            aria-hidden="true"
+                          >
+                            <use
+                              xlink:href="/assets/icons/action-sprite/svg/symbols.svg#check"
+                            ></use>
+                          </svg>
+                          <span class="slds-assistive-text">Completed</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slds-media__body">
+                    <div class="slds-welcome-mat__tile-body">
+                      <h3 class="slds-welcome-mat__tile-title">
+                        Power Up the Utility Bar
+                      </h3>
+                      <p class="slds-welcome-mat__tile-description">
+                        Tap into case history or share notes with fellow
+                        agents—it all happens on the utility bar.
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="slds-welcome-mat__tile">
+                <a
+                  href="javascript:void(0);"
+                  class="slds-box slds-box_link slds-media"
+                >
+                  <div
+                    class="slds-media__figure slds-media__figure_fixed-width slds-align_absolute-center"
+                  >
+                    <div class="slds-welcome-mat__tile-figure">
+                      <div class="slds-welcome-mat__tile-icon-container">
+                        <span
+                          class="slds-icon_container slds-icon-utility-magicwand"
+                        >
+                          <svg
+                            class="slds-icon slds-icon-text-default"
+                            aria-hidden="true"
+                          >
+                            <use
+                              xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#magicwand"
+                            ></use>
+                          </svg>
+                        </span>
+                        <span
+                          class="slds-icon_container slds-icon_container_circle slds-icon-action-check"
+                          title="Completed"
+                        >
+                          <svg
+                            class="slds-icon slds-welcome-mat__icon-check"
+                            aria-hidden="true"
+                          >
+                            <use
+                              xlink:href="/assets/icons/action-sprite/svg/symbols.svg#check"
+                            ></use>
+                          </svg>
+                          <span class="slds-assistive-text">Completed</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slds-media__body">
+                    <div class="slds-welcome-mat__tile-body">
+                      <h3 class="slds-welcome-mat__tile-title">
+                        Customize your view
+                      </h3>
+                      <p class="slds-welcome-mat__tile-description">
+                        Tailor your cases to your team&#x27;s workflow with
+                        custom list views.
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li class="slds-welcome-mat__tile">
+                <a
+                  href="javascript:void(0);"
+                  class="slds-box slds-box_link slds-media"
+                >
+                  <div
+                    class="slds-media__figure slds-media__figure_fixed-width slds-align_absolute-center"
+                  >
+                    <div class="slds-welcome-mat__tile-figure">
+                      <div class="slds-welcome-mat__tile-icon-container">
+                        <span
+                          class="slds-icon_container slds-icon-utility-knowledge_base"
+                        >
+                          <svg
+                            class="slds-icon slds-icon-text-default"
+                            aria-hidden="true"
+                          >
+                            <use
+                              xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#knowledge_base"
+                            ></use>
+                          </svg>
+                        </span>
+                        <span
+                          class="slds-icon_container slds-icon_container_circle slds-icon-action-check"
+                          title="Completed"
+                        >
+                          <svg
+                            class="slds-icon slds-welcome-mat__icon-check"
+                            aria-hidden="true"
+                          >
+                            <use
+                              xlink:href="/assets/icons/action-sprite/svg/symbols.svg#check"
+                            ></use>
+                          </svg>
+                          <span class="slds-assistive-text">Completed</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slds-media__body">
+                    <div class="slds-welcome-mat__tile-body">
+                      <h3 class="slds-welcome-mat__tile-title">
+                        Share the Knowledge
+                      </h3>
+                      <p class="slds-welcome-mat__tile-description">
+                        Harness your team&#x27;s collective know-how with our
+                        powerful knowledge base.
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+<footer class="slds-card__footer">
+      <div class="slds-progress">
+        <ol class="slds-progress__list">
+          <li class="slds-progress__item slds-is-active">
+            <button class="slds-button slds-progress__marker">
+              <span class="slds-assistive-text">Step 1 - Active</span>
+            </button>
+          </li>
+          <li class="slds-progress__item">
+            <button class="slds-button slds-progress__marker">
+              <span class="slds-assistive-text">Step 2 </span>
+            </button>
+          </li>
+          <li class="slds-progress__item">
+            <button class="slds-button slds-progress__marker">
+              <span class="slds-assistive-text">Step 3 </span>
+            </button>
+          </li>
+          <li class="slds-progress__item">
+            <button class="slds-button slds-progress__marker">
+              <span class="slds-assistive-text">Step 4 </span>
+            </button>
+          </li>
+          <li class="slds-progress__item">
+            <button class="slds-button slds-progress__marker">
+              <span class="slds-assistive-text">Step 5 </span>
+            </button>
+          </li>
+        </ol>
+        <div
+          class="slds-progress-bar slds-progress-bar_x-small"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+          role="progressbar"
+        >
+          <span class="slds-progress-bar__value" style="width:0%">
+            <span class="slds-assistive-text">Progress: 0%</span>
+          </span>
+        </div>
+      </div>
 
-// Connection opened
-socket.addEventListener('open', function (event) {
-    socket.send('Hello Server!');
-});
+      <style type="text/css">
+        .embeddedServiceHelpButton .helpButton .uiButton {
+          background-color: #005290;
+          font-family: "Arial", sans-serif;
+        }
+        .embeddedServiceHelpButton .helpButton .uiButton:focus {
+          outline: 1px solid #005290;
+        }
+      </style>
 
-// Listen for messages
-socket.addEventListener('message', function (event) {
-    console.log('Message from server ', event.data);
-});
-</script>
+      <script
+        type="text/javascript"
+        src="https://service.force.com/embeddedservice/5.0/esw.min.js"
+      ></script>
+      <script type="text/javascript">
+        var cbut;
+        var initESW = function(gslbBaseURL) {
+          embedded_svc.settings.displayHelpButton = true; //Or false
+          embedded_svc.settings.language = ""; //For example, enter 'en' or 'en-US'
+
+          //embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
+          //embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
+
+          //embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
+          //embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
+
+          // Settings for Chat
+          //embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+          // Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
+          // Returns a valid button ID.
+          //};
+          //embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
+          //embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
+          //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
+
+          embedded_svc.settings.enabledFeatures = ["LiveAgent"];
+          embedded_svc.settings.entryFeature = "LiveAgent";
+
+          embedded_svc.init(
+            "https://north-services-event.my.salesforce.com",
+            "https://sdodemo-main-166ce2cf6b6-172-174b9e8c87c.force.com/consumer",
+            gslbBaseURL,
+            "00D09000001Ihpp",
+            "quiz",
+            {
+              baseLiveAgentContentURL:
+                "https://c.la3-c2-fra.salesforceliveagent.com/content",
+              deploymentId: "57209000000Xbin",
+              buttonId: "57309000000XeCS",
+              baseLiveAgentURL:
+                "https://d.la3-c2-fra.salesforceliveagent.com/chat",
+              eswLiveAgentDevName:
+                "EmbeddedServiceLiveAgent_Parent04I09000000TRYqEAO_174e4f22acd",
+              isOfflineSupportEnabled: false
+            }
+          );
+        };
+
+        if (!window.embedded_svc) {
+          var s = document.createElement("script");
+          s.setAttribute(
+            "src",
+            "https://north-services-event.my.salesforce.com/embeddedservice/5.0/esw.min.js"
+          );
+          s.onload = function() {
+            console.log("what");
+            initESW(null);
+          };
+          document.body.appendChild(s);
+        } else {
+          //initESW('https://service.force.com');
+          setTimeout(() => {
+            //var ttt = document.getElementsByClassName("uiButton helpButtonEnabled");
+            console.log(ttt);
+            ttt[0].click();
+          }, 2000);
+        }
+
+        // Create WebSocket connection.
+        const socket = new WebSocket("wss://sdm-northquiz.glitch.me/");
+
+        // Connection opened
+        socket.addEventListener("open", function(event) {
+          socket.send("Hello Server!");
+        });
+
+        // Listen for messages
+        socket.addEventListener("message", function(event) {
+          console.log("Message from server ", event.data);
+        });
+      </script>
+        </footer>    
+  </div>
       
     </article>
   </body>
